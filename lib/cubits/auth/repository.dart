@@ -22,6 +22,7 @@ class AuthRepository {
     DateTime dob,
     double weight,
     double height,
+
   ) {
     final age = DateTime.now().year - dob.year;
 
@@ -34,6 +35,7 @@ class AuthRepository {
       'weight': weight,
       'height': height,
       'age': age,
+      'points': 0,
     };
 
     return AuthDataProvider.register(map);

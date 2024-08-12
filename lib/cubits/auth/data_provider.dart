@@ -63,7 +63,7 @@ class AuthDataProvider {
 
       if (user != null) {
         map['uid'] = user.uid;
-        await user.sendEmailVerification();
+
         await user.updateDisplayName(map['fullName']);
         await user.updatePhotoURL(map['imageUrl']);
 

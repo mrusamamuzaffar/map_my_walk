@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:delayed_display/delayed_display.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bounce/flutter_bounce.dart';
 import 'package:map_my_walk/configs/app_typography_ext.dart';
@@ -15,9 +18,31 @@ import '../../../providers/app_provider.dart';
 class MyAppBar extends StatelessWidget {
   const MyAppBar({Key? key}) : super(key: key);
 
-  @override
+  Future<int> getTotalChallenges() async {
+    final collection = FirebaseFirestore.instance.collection('challenges');
+    final snapshot = await collection.get();
+    return snapshot.size; // Returns the count of documents in the collection
+  }
+
+
+  Future<int> getUserRank(String userId) async {
+    final usersCollection = FirebaseFirestore.instance.collection('users');
+    final currentUserDoc = await usersCollection.doc(userId).get();
+    final currentUserPoints = currentUserDoc.data()?['points'] ?? 0;
+    final querySnapshot = await usersCollection.where('points', isGreaterThan: currentUserPoints).get();
+    return querySnapshot.size + 1; // Rank is one more than the number of users with more points
+  }
+
+  String? getCurrentUserId() {
+    final user = FirebaseAuth.instance.currentUser;
+    return user?.uid; // This returns the user ID of the currently signed-in user
+  }
+
+
+
   Widget build(BuildContext context) {
     final app = Provider.of<AppProvider>(context);
+
     return Padding(
       padding: Space.v,
       child: Row(
@@ -27,22 +52,7 @@ class MyAppBar extends StatelessWidget {
             onPressed: () => app.toggleDrawer(),
             icon: const Icon(Icons.menu),
           ),
-          DelayedDisplay(
-            delay: const Duration(milliseconds: 300),
-            slidingBeginOffset: const Offset(-10, 0),
-            child: Card(
-              shape: const CircleBorder(),
-              child: Padding(
-                padding: Space.all(2, 2),
-                child: CircleAvatar(
-                  radius: 15,
-                  backgroundColor: Colors.grey[200],
-                  backgroundImage: const NetworkImage(
-                      "https://avatars.githubusercontent.com/u/101565812?v=4"),
-                ),
-              ),
-            ),
-          ),
+          // Other widgets...
           Space.x,
           DelayedDisplay(
             delay: const Duration(milliseconds: 250),
@@ -56,13 +66,18 @@ class MyAppBar extends StatelessWidget {
             ),
           ),
           Space.x,
-          DelayedDisplay(
-            delay: const Duration(milliseconds: 200),
-            slidingBeginOffset: const Offset(-10, 0),
-            child: Text(
-              "6",
-              style: AppText.h3bm.cl(AppTheme.c.primaryDark!),
-            ),
+          FutureBuilder(
+            future: getTotalChallenges(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
+                return Text(
+                  "${snapshot.data}",
+                  style: AppText.h3bm.cl(AppTheme.c.primaryDark!),
+                );
+              } else {
+                return CircularProgressIndicator();
+              }
+            },
           ),
           Space.x,
           DelayedDisplay(
@@ -77,30 +92,25 @@ class MyAppBar extends StatelessWidget {
             ),
           ),
           Space.x,
-          DelayedDisplay(
-            delay: const Duration(milliseconds: 100),
-            slidingBeginOffset: const Offset(-10, 0),
-            child: Text(
-              "12",
-              style: AppText.h3bm.cl(AppTheme.c.primaryDark!),
-            ),
+          // Assuming userId is available from some state management or passed as an argument
+          FutureBuilder(
+            future: getUserRank(getCurrentUserId().toString()), // Replace "userId" with actual user id
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
+                return Text(
+                  "${snapshot.data} position", // Customize based on the rank
+                  style: AppText.h3bm.cl(AppTheme.c.primaryDark!),
+                );
+              } else {
+                return CircularProgressIndicator();
+              }
+            },
           ),
-          const Expanded(child: SizedBox()),
-          DelayedDisplay(
-            delay: const Duration(milliseconds: 100),
-            slidingBeginOffset: const Offset(10, 0),
-            child: Bounce(
-              onPressed: () {},
-              duration: const Duration(milliseconds: 200),
-              child: CustomPaint(
-                painter: NotificationBellPainter(),
-                size: const Size(16, 16),
-              ),
-            ),
-          ),
-          Space.x2
+          const Expanded(child: SizedBox(width: 6)),
+          // Other widgets...
         ],
       ),
     );
   }
+
 }

@@ -23,7 +23,7 @@ class AppDrawer extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                'Map My Walk',
+                'Fit Quest',
                 style: AppText.h1b.copyWith(
                   color: Colors.white,
                   fontSize: AppDimensions.font(18),
@@ -40,34 +40,22 @@ class AppDrawer extends StatelessWidget {
                   'My Profile',
                   style: AppText.h2.cl(Colors.white),
                 ),
-                onTap: () {},
+                onTap: () => Navigator.pushNamed(context, AppRoutes.profile),
               ),
               ListTile(
                 minLeadingWidth: 20,
                 leading: const Icon(
-                  Icons.settings_outlined,
+                  Icons.leaderboard_outlined,
                   color: Colors.white,
                 ),
                 title: Text(
-                  'Settings',
+                  'Leaderboard',
                   style: AppText.h2.cl(Colors.white),
                 ),
-                onTap: () {},
+                onTap: () =>Navigator.pushNamed(context, AppRoutes.leaderBoard),
               ),
               const Divider(
                 color: Colors.white,
-              ),
-              ListTile(
-                minLeadingWidth: 20,
-                leading: const Icon(
-                  Icons.widgets,
-                  color: Colors.white,
-                ),
-                title: Text(
-                  'Challenges',
-                  style: AppText.h2.cl(Colors.white),
-                ),
-                onTap: () => Navigator.pushNamed(context, AppRoutes.challenges),
               ),
               ListTile(
                 minLeadingWidth: 20,
@@ -80,6 +68,18 @@ class AppDrawer extends StatelessWidget {
                   style: AppText.h2.cl(Colors.white),
                 ),
                 onTap: () => Navigator.pushNamed(context, AppRoutes.fitnessTip),
+              ),
+              ListTile(
+                minLeadingWidth: 20,
+                leading: const Icon(
+                  Icons.widgets,
+                  color: Colors.white,
+                ),
+                title: Text(
+                  'Challenges',
+                  style: AppText.h2.cl(Colors.white),
+                ),
+                onTap: () => Navigator.pushNamed(context, AppRoutes.challenges),
               ),
               const Divider(
                 color: Colors.white,

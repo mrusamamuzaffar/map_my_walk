@@ -4,7 +4,7 @@ class UserStatsDataProvider {
   static final firestore = FirebaseFirestore.instance;
   static final user = FirebaseAuth.instance.currentUser;
   static final testUserCollection =
-      firestore.collection("testUser").doc("123").collection("stats");
+      firestore.collection("users").doc(user?.uid).collection("stats");
   static Stream<QuerySnapshot<Map<String, dynamic>>> fetch() {
     try {
       return testUserCollection.snapshots().asBroadcastStream();

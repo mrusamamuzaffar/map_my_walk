@@ -13,6 +13,7 @@ import 'package:map_my_walk/screens/fitness_tip/fitness_tip.dart';
 import 'package:map_my_walk/screens/home/home.dart';
 import 'package:map_my_walk/screens/leader_board/leader_board.dart';
 import 'package:map_my_walk/screens/login/login.dart';
+import 'package:map_my_walk/screens/profile/profile.dart';
 import 'package:map_my_walk/screens/register/register.dart';
 import 'package:map_my_walk/screens/splash/splash.dart';
 import 'package:map_my_walk/screens/track_completed/track_completed.dart';
@@ -31,6 +32,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(
+    name: 'MAP MY WALK',
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
@@ -55,7 +57,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Map My Walk',
+        title: 'Fit Quest',
         theme: theme.themeLight,
         initialRoute: AppRoutes.splash,
         localizationsDelegates: const [
@@ -63,18 +65,18 @@ class MyApp extends StatelessWidget {
         ],
         routes: {
           AppRoutes.splash: (context) => const SplashScreen(),
-          AppRoutes.tracking: (context) => const TrackingScreen(),
+          AppRoutes.tracking: (context) => const TrackingScreen(steps: '', points: '',),
           AppRoutes.dashboard: (context) => const DashboardScreen(),
-          AppRoutes.trackCompleted: (context) => const TrackCompletedScreen(),
-          AppRoutes.leaderBoard: (context) => const LeaderBoardScreen(),
+          AppRoutes.leaderBoard: (context) => LeaderboardPage(),
           AppRoutes.baseScreen: (context) => const BaseScreen(),
           AppRoutes.home: (context) => const HomeScreen(),
           AppRoutes.login: (context) => const LoginScreen(),
           AppRoutes.register: (context) => const RegisterScreen(),
-          AppRoutes.challenges: (context) => const ChallengesScreen(),
-          AppRoutes.fitnessTip: (context) => const FitnessTipScreen(),
+          AppRoutes.challenges: (context) => ChallengesScreen(),
+          AppRoutes.fitnessTip: (context) => FitnessTipScreen(),
           AppRoutes.createChallenge: (context) => const CreateChallengeScreen(),
           AppRoutes.challengeDetail: (context) => const ChallengeDetailScreen(),
+          AppRoutes.profile: (context) => ProfilePage()
         },
       ),
     );

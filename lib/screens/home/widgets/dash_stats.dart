@@ -2,6 +2,8 @@ import 'package:countup/countup.dart';
 import 'package:delayed_display/delayed_display.dart';
 import 'package:flutter/material.dart';
 import 'package:map_my_walk/configs/app_typography_ext.dart';
+import 'package:map_my_walk/providers/app_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../../../configs/app_theme.dart';
 import '../../../configs/app_typography.dart';
@@ -12,10 +14,12 @@ import '../../../utils/utils.dart';
 
 class DashStats extends StatelessWidget {
   final UserStatsState? state;
-  const DashStats({Key? key, this.state}) : super(key: key);
+  late AppProvider app;
+  DashStats({Key? key, this.state}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    app = Provider.of<AppProvider>(context);
     return DelayedDisplay(
       delay: const Duration(milliseconds: 200),
       child: Container(
@@ -48,14 +52,15 @@ class DashStats extends StatelessWidget {
   }
 
   double getValue(int index) {
-   
+
     switch (index) {
       case 0:
-        return state!.totalCaloriesBurned!.toDouble();
+        return double.parse(app.getAppropriateValue(1));
       case 2:
-        return double.parse(state!.averageSpeed!.toStringAsFixed(1));
+        // return double.parse(state!.averageSpeed!.toStringAsFixed(1));
+      return double.parse(app.getAppropriateValue(2));
       case 4:
-        return double.parse(state!.distanceTraveled!.toStringAsFixed(1));
+        return double.parse(app.getAppropriateValue(0));
       default:
         return 0.0;
     }

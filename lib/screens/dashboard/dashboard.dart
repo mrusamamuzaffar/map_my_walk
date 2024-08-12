@@ -16,19 +16,19 @@ class DashboardScreen extends StatelessWidget {
     final appPro = Provider.of<AppProvider>(context);
 
     return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: appPro.bottomIndex != 0
-          ? null
-          : DelayedDisplay(
-              delay: const Duration(milliseconds: 200),
-              child: FloatingActionButton.extended(
-                  onPressed: () {
-                    Navigator.pushNamed(context, AppRoutes.tracking);
-                  },
-                  label: const Text("Track Activity!")),
-            ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // floatingActionButton: appPro.bottomIndex != 0
+      //     ? null
+      //     : DelayedDisplay(
+      //         delay: const Duration(milliseconds: 200),
+      //         child: FloatingActionButton.extended(
+      //             onPressed: () {
+      //               Navigator.pushNamed(context, AppRoutes.challenges);
+      //             },
+      //             label: const Text("View Challenges")),
+      //       ),
       body: Utils.navBarScreens[appPro.bottomIndex],
-      bottomNavigationBar: const BottomNavBar(),
+      // bottomNavigationBar: const BottomNavBar(),
     );
   }
 }

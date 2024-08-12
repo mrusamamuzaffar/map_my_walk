@@ -50,13 +50,13 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     const MyAppBar(),
                     DashGauge(
-                      totalSteps: state.totalSteps,
+                      maxSteps: state.totalSteps,
                     ),
                     DashStats(
                       state: state,
                     ),
                     const Expanded(
-                      child: WeeklyChart(),
+                      child: ChallengesChart(),
                     )
                   ],
                 );

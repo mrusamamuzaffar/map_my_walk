@@ -44,21 +44,22 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBrhh6kOHMsyEq7w6u42XIqo6o5Yw90jno',
-    appId: '1:576771086062:web:55cb7fee31b88cee3dc5ff',
-    messagingSenderId: '576771086062',
-    projectId: 'map-my-walk-2e3e4',
-    authDomain: 'map-my-walk-2e3e4.firebaseapp.com',
-    storageBucket: 'map-my-walk-2e3e4.appspot.com',
-    measurementId: 'G-F7L5D0E7SK',
+      apiKey: "AIzaSyAda7U3bjiwREP-x_aV1JJr_MPx6oL2wu4",
+      authDomain: "fitquest-ee88f.firebaseapp.com",
+      projectId: "fitquest-ee88f",
+      storageBucket: "fitquest-ee88f.appspot.com",
+      messagingSenderId: "918407456616",
+      appId: "1:918407456616:web:924a8660b3b07adeacd8dd"
+
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyB47-cJpx5w675xvNhsqnKwsaqYRpvRhsQ',
-    appId: '1:576771086062:android:455e634f839b2d6a3dc5ff',
-    messagingSenderId: '576771086062',
-    projectId: 'map-my-walk-2e3e4',
-    storageBucket: 'map-my-walk-2e3e4.appspot.com',
+      apiKey: "AIzaSyAda7U3bjiwREP-x_aV1JJr_MPx6oL2wu4",
+      authDomain: "fitquest-ee88f.firebaseapp.com",
+      projectId: "fitquest-ee88f",
+      storageBucket: "fitquest-ee88f.appspot.com",
+      messagingSenderId: "918407456616",
+      appId: "1:918407456616:web:924a8660b3b07adeacd8dd"
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
@@ -72,12 +73,13 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDPISmGOSAq_Ihjr9hnRxpIQCIMJMbSj38',
-    appId: '1:576771086062:ios:ee3d127a25dbee593dc5ff',
-    messagingSenderId: '576771086062',
-    projectId: 'map-my-walk-2e3e4',
-    storageBucket: 'map-my-walk-2e3e4.appspot.com',
-    iosClientId: '576771086062-cdp0t6sr3dk16eb25okrmqdbhnlno91m.apps.googleusercontent.com',
-    iosBundleId: 'com.usamamuzaffar.mapMyWalk.RunnerTests',
+      apiKey: "AIzaSyBfq8do7QgxgCUQrZRxecCsjK2JHkPMJB8",
+      authDomain: "smartfarm-325bd.firebaseapp.com",
+      projectId: "smartfarm-325bd",
+      storageBucket: "smartfarm-325bd.appspot.com",
+      messagingSenderId: "471539173048",
+      appId: "1:471539173048:web:1ba174cb3cc3acb5de564d",
+      measurementId: "G-CGH6MX87Z4"
+
   );
 }

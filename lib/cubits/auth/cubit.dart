@@ -47,6 +47,7 @@ class AuthCubit extends Cubit<AuthState> {
     DateTime dob,
     double weight,
     double height,
+
   ) async {
     emit(const AuthRegisterLoading());
     try {
@@ -57,7 +58,8 @@ class AuthCubit extends Cubit<AuthState> {
         gender,
         dob,
         weight,
-        height,
+        height
+
       );
 
       emit(const AuthRegisterSuccess());

@@ -226,6 +226,7 @@ class RegisterScreen extends StatelessWidget {
                             DateTime.parse(values['dob']!),
                             double.parse(values['weight']!),
                             double.parse(values['height']!),
+
                           );
                         }
                       }

@@ -73,7 +73,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   height: 300.h,
                 ),
                 Text(
-                  'Map My Walk',
+                  'Fit Quest',
                   style: AppText.h1b.copyWith(
                     fontSize: AppDimensions.font(18),
                     color: AppTheme.c.primary,

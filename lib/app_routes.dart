@@ -14,4 +14,5 @@ class AppRoutes {
 	static const fitnessTip = 'fitnessTip';
 	static const trackCompleted = 'trackCompleted';
 	static const login = 'login';
+	static const profile = 'profile';
 }

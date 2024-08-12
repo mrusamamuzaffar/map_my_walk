@@ -64,7 +64,7 @@ class LoginScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         Text(
-                          'Map My Walk',
+                          'Fit Quest',
                           style: AppText.h1b.copyWith(
                             fontSize: AppDimensions.font(17),
                             color: AppTheme.c.primaryDark,
